@@ -1,15 +1,15 @@
 // Normalize
-@use './sass/base/normalize';
+@import './sass/base/normalize';
 // Normalizadores para navegadores
-@use './sass/base/reset';
+@import './sass/base/reset';
 
 // Variables
-@use './sass/abstracts/variables';
+@import './sass/abstracts/variables';
 
 // Componentes
-@use './sass/components/itemCount';
+@import './sass/components/itemCount';
 
-@use './sass/components/item';
+@import './sass/components/item';
 
 // Layout
-@use './sass/layout/grid';
+@import './sass/layout/grid';

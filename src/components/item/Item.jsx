@@ -1,6 +1,4 @@
-import ItemCount from '../itemCount/ItemCount';
-
-const Item = ({ id, name, description, stock }) => {
+const Item = ({ id, img, description, stock }) => {
 	const onAdd = (item) => {
 		if (item === 1) {
 			alert(`Has añadido ${item} producto al carrito`);
@@ -10,10 +8,15 @@ const Item = ({ id, name, description, stock }) => {
 	};
 
 	return (
-		<article className='card-item'>
-			<h3 className='card-item__title'>{name}</h3>
+		<article className='card-item' key={id}>
+			<picture>
+				<img className='card-item__img' src={img} alt='' />
+			</picture>
 			<p className='card-item__description'>{description}</p>
-			<ItemCount inicial={1} stock={stock} onAdd={onAdd} />
+			<a className='btn detail-product' href='#'>
+				Ver detalle del producto
+			</a>
+			<p className='card-item__stock'>Disponible: {stock}</p>
 		</article>
 	);
 };

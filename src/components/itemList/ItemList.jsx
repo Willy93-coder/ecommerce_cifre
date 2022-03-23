@@ -33,7 +33,7 @@ const ItemList = () => {
 						return (
 							<div key={producto.id} className='card-container'>
 								<Item
-									name={producto.name}
+									img={producto.img}
 									description={producto.description}
 									stock={producto.stock}
 								/>
