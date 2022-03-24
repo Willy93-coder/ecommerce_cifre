@@ -34,7 +34,7 @@ const ItemList = () => {
 							<div key={producto.id} className='card-container'>
 								<Item
 									img={producto.img}
-									description={producto.description}
+									title={producto.title}
 									stock={producto.stock}
 								/>
 							</div>
