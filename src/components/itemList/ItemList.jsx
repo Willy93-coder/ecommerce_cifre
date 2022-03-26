@@ -11,10 +11,14 @@ const ItemList = () => {
 		}, 2000);
 	});
 
+	const API = 'https://fakestoreapi.com/products';
+
 	const getProductosDB = async () => {
 		try {
-			const resultado = await getProductos;
-			setProductos(resultado);
+			const respuesta = await fetch(API);
+			const data = await respuesta.json();
+			setProductos(data);
+			console.log(data);
 		} catch (error) {
 			console.log(error);
 			alert('No podemos enseñar los productos ahora mismo');
@@ -33,9 +37,9 @@ const ItemList = () => {
 						return (
 							<div key={producto.id} className='card-container'>
 								<Item
-									img={producto.img}
+									img={producto.image}
 									title={producto.title}
-									stock={producto.stock}
+									stock={producto.rating.count}
 								/>
 							</div>
 						);
