@@ -1,9 +1,9 @@
-import NavLinks from './NavLinks';
+import Nav from './Nav';
 
 const MobileNavigation = () => {
 	return (
 		<nav className='nav-container mobileNavigation'>
-			<NavLinks />
+			<Nav />
 		</nav>
 	);
 };

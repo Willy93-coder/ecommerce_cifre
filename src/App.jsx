@@ -1,15 +1,11 @@
-import ItemListContainer from './components/itemListContainer/ItemListContainer';
-import NavBar from './components/navBar/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.scss';
-import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
+import RoutesApp from './routes/RoutesApp';
 
 const App = () => {
 	return (
 		<>
-			<NavBar />
-			{/* <ItemListContainer greeting=' Deportivas' /> */}
-			<ItemDetailContainer />
+			<RoutesApp />
 		</>
 	);
 };

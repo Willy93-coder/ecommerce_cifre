@@ -1,10 +1,11 @@
 import ItemDetail from '../itemDetail/ItemDetail';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = () => {
 	const [item, setItem] = useState({});
 
-	const urlItem = 'https://fakestoreapi.com/products/1';
+	const urlItem = `https://fakestoreapi.com/products/`;
 
 	const getProductosDB = async () => {
 		try {

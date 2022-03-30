@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Item from '../item/Item';
 
 const ItemList = () => {
 	const [productos, setProductos] = useState([]);
+
+	const { categoriaId } = useParams();
 
 	const API = 'https://fakestoreapi.com/products';
 
@@ -20,7 +23,7 @@ const ItemList = () => {
 	useEffect(() => {
 		getProductosDB();
 	}, []);
-	console.log(productos);
+	console.log(categoriaId);
 	return (
 		<section className='container'>
 			{productos.length ? (

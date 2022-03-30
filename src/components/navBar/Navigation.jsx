@@ -1,9 +1,9 @@
-import NavLinks from './NavLinks';
+import Nav from './Nav';
 
 const Navigation = () => {
 	return (
 		<nav className='nav-container navigation'>
-			<NavLinks />
+			<Nav />
 		</nav>
 	);
 };
