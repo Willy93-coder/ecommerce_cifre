@@ -32,6 +32,7 @@ const ItemList = () => {
 						return (
 							<div key={producto.id} className='card-container'>
 								<Item
+									id={producto.id}
 									img={producto.image}
 									title={producto.title}
 									stock={producto.rating.count}

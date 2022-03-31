@@ -2,10 +2,11 @@ import ItemDetail from '../itemDetail/ItemDetail';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({}) => {
 	const [item, setItem] = useState({});
+	const { detalleId } = useParams();
 
-	const urlItem = `https://fakestoreapi.com/products/`;
+	const urlItem = `https://fakestoreapi.com/products/${detalleId}`;
 
 	const getProductosDB = async () => {
 		try {
@@ -26,6 +27,7 @@ const ItemDetailContainer = () => {
 		<>
 			<div className='detail-container' key={item.id}>
 				<ItemDetail
+					id={item.id}
 					img={item.image}
 					title={item.title}
 					description={item.description}
