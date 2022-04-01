@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 const ItemDetailContainer = ({}) => {
 	const [item, setItem] = useState({});
+	const [stock, setStock] = useState({});
 	const { detalleId } = useParams();
 
 	const urlItem = `https://fakestoreapi.com/products/${detalleId}`;
@@ -13,6 +14,7 @@ const ItemDetailContainer = ({}) => {
 			const respuesta = await fetch(urlItem);
 			const data = await respuesta.json();
 			setItem(data);
+			setStock(data.rating);
 		} catch (error) {
 			console.log(error);
 			alert('No podemos enseñar el producto ahora mismo');
@@ -23,6 +25,9 @@ const ItemDetailContainer = ({}) => {
 		getProductosDB();
 	}, []);
 
+	console.log(item);
+	console.log(stock);
+
 	return (
 		<>
 			<div className='detail-container' key={item.id}>
@@ -32,6 +37,7 @@ const ItemDetailContainer = ({}) => {
 					title={item.title}
 					description={item.description}
 					price={item.price}
+					stock={stock.count}
 				/>
 			</div>
 		</>

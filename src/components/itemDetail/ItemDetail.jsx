@@ -1,6 +1,6 @@
 import ItemCount from '../itemCount/ItemCount';
 
-const ItemDetail = ({ id, img, title, description, price }) => {
+const ItemDetail = ({ id, img, title, description, price, stock }) => {
 	const onAdd = (item) => {
 		if (item === 1) {
 			alert(`Has añadido ${item} producto al carrito`);
@@ -17,7 +17,8 @@ const ItemDetail = ({ id, img, title, description, price }) => {
 			<div className='detail__text'>
 				<h3 className='detail__text__title'>{title}</h3>
 				<p className='detail__text__description'>{description}</p>
-				<ItemCount inicial={1} onAdd={onAdd} />
+				<p className='detail__text__price'>${price}</p>
+				<ItemCount inicial={1} onAdd={onAdd} stock={stock} />
 			</div>
 		</div>
 	);
