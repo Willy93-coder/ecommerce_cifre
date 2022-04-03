@@ -9,9 +9,13 @@ padding: 1rem;
 }
 
 .btn {
-    border: 1px solid #969696;
+    border: 1px solid $btn;
     border-radius: 0;
     font-size: 0.9rem;
+    &:hover {
+        color: $white;
+        background: $btn;
+    }
 }
 
 .btn-plus {

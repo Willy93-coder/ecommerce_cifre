@@ -12,10 +12,10 @@ const Nav = () => {
 				<NavLink to='/'>Inicio</NavLink>
 			</li>
 			<li className='menu__item'>
-				<NavLink to='/categoria/electronica'>Electrónica</NavLink>
+				<NavLink to='/categoria/electronics'>Electrónica</NavLink>
 			</li>
 			<li className='menu__item'>
-				<NavLink to='/categoria/visuteria'>Visutería</NavLink>
+				<NavLink to='/categoria/jewelery'>Visutería</NavLink>
 			</li>
 			<li className='menu__item'>
 				<CartWidget />

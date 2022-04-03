@@ -9,21 +9,34 @@ const ItemList = () => {
 
 	const API = 'https://fakestoreapi.com/products';
 
-	const getProductosDB = async () => {
-		try {
-			const respuesta = await fetch(API);
-			const data = await respuesta.json();
-			setProductos(data);
-		} catch (error) {
-			console.log(error);
-			alert('No podemos enseñar los productos ahora mismo');
-		}
-	};
-
 	useEffect(() => {
-		getProductosDB();
-	}, []);
-	console.log(categoriaId);
+		if (categoriaId) {
+			const getProductosDB = async () => {
+				try {
+					const respuesta = await fetch(API);
+					const data = await respuesta.json();
+					setProductos(data.filter((item) => item.category === categoriaId));
+				} catch (error) {
+					console.log(error);
+					alert('No podemos enseñar los productos ahora mismo');
+				}
+			};
+			getProductosDB();
+		} else {
+			const getProductosDB = async () => {
+				try {
+					const respuesta = await fetch(API);
+					const data = await respuesta.json();
+					setProductos(data);
+				} catch (error) {
+					console.log(error);
+					alert('No podemos enseñar los productos ahora mismo');
+				}
+			};
+			getProductosDB();
+		}
+	}, [categoriaId]);
+
 	return (
 		<section className='container'>
 			{productos.length ? (
