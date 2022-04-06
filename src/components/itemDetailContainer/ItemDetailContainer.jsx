@@ -2,7 +2,7 @@ import ItemDetail from '../itemDetail/ItemDetail';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const ItemDetailContainer = ({}) => {
+const ItemDetailContainer = () => {
 	const [item, setItem] = useState({});
 	const [stock, setStock] = useState({});
 	const { detalleId } = useParams();
@@ -25,8 +25,8 @@ const ItemDetailContainer = ({}) => {
 		getProductosDB();
 	}, []);
 
-	console.log(item);
-	console.log(stock);
+	// console.log(item);
+	// console.log(stock);
 
 	return (
 		<>

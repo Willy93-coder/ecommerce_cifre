@@ -1,8 +1,22 @@
-import ItemCount from '../itemCount/ItemCount';
-import KeepBuying from '../keepBuying/KeepBuying';
 import { useState } from 'react';
+import { useCartContext } from '../../context/cartContext';
+
+import ItemCount from '../itemCount/ItemCount';
+import KeepBuying from '../cart/KeepBuying';
 
 const ItemDetail = ({ id, img, title, description, price, stock }) => {
+	const { addToCart, cartList } = useCartContext();
+	const myProduct = {
+		id,
+		img,
+		title,
+		description,
+		price,
+		stock,
+	};
+
+	// console.log(myProduct);
+	// Estado
 	const [compra, setCompra] = useState('aniadir');
 	const onAdd = (item) => {
 		if (item === 1) {
@@ -12,8 +26,10 @@ const ItemDetail = ({ id, img, title, description, price, stock }) => {
 			console.log(`Has añadido ${item} productos al carrito`);
 			setCompra('buttons');
 		}
+		addToCart({ ...myProduct, cantidad: item });
 	};
 
+	console.log(cartList);
 	return (
 		<div className='detail' key={id} id={id}>
 			<picture>
