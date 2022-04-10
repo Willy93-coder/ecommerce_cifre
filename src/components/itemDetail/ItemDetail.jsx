@@ -15,18 +15,10 @@ const ItemDetail = ({ id, img, title, description, price, stock }) => {
 		stock,
 	};
 
-	// console.log(myProduct);
-	// Estado
 	const [compra, setCompra] = useState('aniadir');
-	const onAdd = (item) => {
-		if (item === 1) {
-			console.log(`Has añadido ${item} producto al carrito`);
-			setCompra('buttons');
-		} else {
-			console.log(`Has añadido ${item} productos al carrito`);
-			setCompra('buttons');
-		}
-		addToCart({ ...myProduct, cantidad: item });
+	const onAdd = (quantity) => {
+		addToCart(myProduct, quantity);
+		setCompra('buttons');
 	};
 
 	console.log(cartList);

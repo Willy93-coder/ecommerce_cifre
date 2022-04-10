@@ -25,9 +25,6 @@ const ItemDetailContainer = () => {
 		getProductosDB();
 	}, []);
 
-	// console.log(item);
-	// console.log(stock);
-
 	return (
 		<>
 			<div className='detail-container' key={item.id}>
