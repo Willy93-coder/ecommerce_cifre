@@ -23,12 +23,22 @@ const CartContextProvider = ({ children }) => {
 		}
 	};
 
+	const deleteProductId = (id) => {
+		const newCart = [...cartList];
+		let index = newCart.findIndex((el) => el.id === id);
+		newCart.splice(index, 1);
+
+		setCartList([...newCart]);
+	};
+
 	const removeCart = () => {
 		setCartList([]);
 	};
 
 	return (
-		<CartContext.Provider value={{ cartList, addToCart, removeCart }}>
+		<CartContext.Provider
+			value={{ cartList, addToCart, deleteProductId, removeCart }}
+		>
 			{children}
 		</CartContext.Provider>
 	);

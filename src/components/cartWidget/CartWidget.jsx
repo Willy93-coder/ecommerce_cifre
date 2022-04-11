@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 
 const CartWidget = () => {
 	return (
-		<Link to={'/cart'}>
-			<FaShoppingCart />
-		</Link>
+		<>
+			<Link to={'/cart'} className='cart-icon'>
+				<div className='qty-container'>
+					<FaShoppingCart />
+					<p className='qty'>0</p>
+				</div>
+			</Link>
+		</>
 	);
 };
 

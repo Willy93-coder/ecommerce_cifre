@@ -1,0 +1,27 @@
+.cart-icon {
+    color: $white;
+    &:hover {
+        color: $light-grey;
+    }
+}
+
+.qty-container{
+    position: relative;
+    text-align: center;
+}
+
+.qty {
+    display: inline-block;
+    position: absolute;
+    background-color: $green;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: .5rem;
+    line-height: 1.0625rem;
+    color: $black;
+}
+
+.no-display {
+    display: none;
+}

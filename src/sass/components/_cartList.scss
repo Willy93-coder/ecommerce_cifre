@@ -1,0 +1,36 @@
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cart-product {
+    max-width: 62.5rem;
+    border: 2px solid $btn;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    &__img {
+        .product-img{
+            width: 9.375rem;
+            height: 9.375rem;
+            object-fit: contain;
+        }
+    }
+    &__btn {
+        .btn-product {
+            margin-right: 1rem;
+        }
+        .terminar {
+            background-color: $black;
+            color: $white;
+            &:hover {
+                background-color: $btn;
+                color: $white;
+            }
+        }
+    }
+}

@@ -6,16 +6,24 @@ const Nav = () => {
 	return (
 		<ul className='menu'>
 			<li className='menu__logo'>
-				<NavLink to='/'>MS</NavLink>
+				<NavLink to='/' className={'links'}>
+					MS
+				</NavLink>
 			</li>
 			<li className='menu__item'>
-				<NavLink to='/'>Inicio</NavLink>
+				<NavLink to='/' className={'links'}>
+					Inicio
+				</NavLink>
 			</li>
 			<li className='menu__item'>
-				<NavLink to='/categoria/electronics'>Electrónica</NavLink>
+				<NavLink to='/categoria/electronics' className={'links'}>
+					Electrónica
+				</NavLink>
 			</li>
 			<li className='menu__item'>
-				<NavLink to='/categoria/jewelery'>Visutería</NavLink>
+				<NavLink to='/categoria/jewelery' className={'links'}>
+					Visutería
+				</NavLink>
 			</li>
 			<li className='menu__item'>
 				<CartWidget />

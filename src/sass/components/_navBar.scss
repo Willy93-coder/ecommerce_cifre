@@ -28,3 +28,10 @@
         display: none;
     }
 }
+
+.links {
+    color: $white;
+    &:hover {
+        color: $light-grey;
+    }
+}
