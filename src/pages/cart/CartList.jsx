@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 
 const CartList = () => {
@@ -25,12 +26,21 @@ const CartList = () => {
 					</div>
 				</div>
 			))}
-			<div className='cart-product__btn'>
-				<button onClick={removeCart} className='btn btn-product'>
-					Vaciar el carrito
-				</button>
-				<button className='btn terminar'>Terminar compra</button>
-			</div>
+			{cartList.length ? (
+				<div className='cart-product__btn'>
+					<button onClick={removeCart} className='btn btn-product'>
+						Vaciar el carrito
+					</button>
+					<button className='btn terminar'>Terminar compra</button>
+				</div>
+			) : (
+				<>
+					<h3>Todavía no has añadido ningún artículo a tu carrito</h3>
+					<Link to='/' className='btn'>
+						Ver productos
+					</Link>
+				</>
+			)}
 		</div>
 	);
 };

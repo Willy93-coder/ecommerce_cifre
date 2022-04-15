@@ -4,7 +4,6 @@ import Item from '../item/Item';
 
 const ItemList = () => {
 	const [productos, setProductos] = useState([]);
-
 	const { categoriaId } = useParams();
 
 	const API = 'https://fakestoreapi.com/products';
