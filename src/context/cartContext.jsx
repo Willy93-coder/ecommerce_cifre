@@ -5,54 +5,64 @@ const CartContext = createContext([]);
 export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = ({ children }) => {
-	const [cartList, setCartList] = useState([]);
-	const [cart, setCart] = useState(0);
+	const [cartData, setCartData] = useState({});
+	const [cartQty, setCartQty] = useState(0);
+	const [price, setPrice] = useState(0);
 
 	const addToCart = (item, quantity) => {
-		if (cartList.length === 0) {
-			let product = { ...item, quantity };
-			setCartList([...cartList, product]);
-			setCart(product.quantity);
-		} else {
-			let product = { ...item, quantity };
-			setCartList([...cartList, product]);
-			let qty = cartList.map((el) => el.quantity);
-			let totalQty = qty.reduce((qty1, qty2) => qty1 + qty2, product.quantity);
-			setCart(totalQty);
-			if (cartList.some((element) => element.id === item.id)) {
-				let index = cartList.findIndex((el) => el.id === item.id);
-				let product = cartList[index];
-				let productQty = product.quantity + quantity;
-				console.log(`Cantidad total del producto: ${productQty}`);
-				console.log(`Cantidad total: ${totalQty}`);
-				const newCart = [...cartList];
-				newCart.splice(index, 1, product);
-				setCartList([...newCart]);
-				let newTotalQty = newCart.reduce(
-					(qty1, qty2) => qty1 + qty2,
-					product.quantity
-				);
-				setCart(newTotalQty);
+		const newItem = {
+			...item,
+			quantity: quantity + cartData[item.id]?.quantity || quantity,
+			total: quantity * cartData[item.id]?.price || quantity * item.price,
+		};
+
+		setCartData({
+			...cartData,
+			[item.id]: {
+				...newItem,
+			},
+		});
+
+		setCartQty(cartQty + quantity);
+		setPrice(price + newItem.total);
+	};
+
+	const deleteProductById = (id) => {
+		const cartDataKeys = Object.keys(cartData);
+		const idString = id.toString();
+
+		for (let i = 0; i < cartDataKeys.length; i++) {
+			if (cartDataKeys[i] === idString) {
+				const priceProduct = cartData[cartDataKeys[i]].price;
+				const totalQtyProduct = cartData[cartDataKeys[i]].quantity;
+				const totalPriceProduct = priceProduct * totalQtyProduct;
+				const newTotalCartPrice = price - totalPriceProduct;
+				Number(newTotalCartPrice.toFixed(2));
+
+				setCartQty(cartQty - totalQtyProduct);
+				setPrice(newTotalCartPrice);
+				delete cartData[cartDataKeys[i]];
+				setCartData(cartData);
+				console.log('Este producto se ha eliminado');
 			}
 		}
 	};
 
-	const deleteProductId = (id) => {
-		const newCart = [...cartList];
-		let index = newCart.findIndex((el) => el.id === id);
-		newCart.splice(index, 1);
-
-		setCartList([...newCart]);
-	};
-
 	const removeCart = () => {
-		setCartList([]);
-		setCart(0);
+		setCartData({});
+		setCartQty(0);
 	};
 
 	return (
 		<CartContext.Provider
-			value={{ cartList, cart, addToCart, deleteProductId, removeCart }}
+			value={{
+				cartData,
+				cartQty,
+				price,
+				addToCart,
+				deleteProductById,
+				removeCart,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

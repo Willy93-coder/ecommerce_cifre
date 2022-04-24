@@ -5,7 +5,7 @@ import ItemCount from '../itemCount/ItemCount';
 import KeepBuying from '../cart/KeepBuying';
 
 const ItemDetail = ({ id, img, title, description, price, stock }) => {
-	const { addToCart, cartList } = useCartContext();
+	const { addToCart, cartData } = useCartContext();
 	const myProduct = {
 		id,
 		img,
@@ -21,7 +21,6 @@ const ItemDetail = ({ id, img, title, description, price, stock }) => {
 		setCompra('buttons');
 	};
 
-	console.log(cartList);
 	return (
 		<div className='detail' key={id} id={id}>
 			<picture>

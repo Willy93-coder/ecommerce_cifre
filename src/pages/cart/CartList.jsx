@@ -2,36 +2,46 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 
 const CartList = () => {
-	const { cartList, deleteProductId, removeCart } = useCartContext();
+	const { cartData, price, deleteProductById, removeCart } = useCartContext();
 
-	console.log(cartList);
+	const cartDataList = Object.keys(cartData).map((k) => cartData[k]);
+
+	const generarOrden = (e) => {
+		console.log('Funcionando');
+	};
+
+	console.log(cartData);
 
 	return (
 		<div className='product-container'>
-			{cartList.map((prod) => (
-				<div key={prod.id} className='cart-product'>
+			{cartDataList.map((item) => (
+				<div key={item.id} className='cart-product'>
 					<div className='cart-product__img'>
-						<img src={prod.img} className='product-img' />
+						<img src={item.img} className='product-img' />
 					</div>
 					<div>
-						<h3 className='cart-product__title'>{prod.title}</h3>
-						<p className='cart-product__description'>{prod.description}</p>
-						<p className='cart-product__price'>${prod.price * prod.quantity}</p>
-						<p className='cart-product__qty'>Cantidad: {prod.quantity}</p>
+						<h3 className='cart-product__title'>{item.title}</h3>
+						<p className='cart-product__description'>{item.description}</p>
+						<p className='cart-product__price'>${item.price}</p>
+						<p className='cart-product__qty'>Cantidad: {item.quantity}</p>
 					</div>
 					<div>
-						<button onClick={() => deleteProductId(prod.id)} className='btn'>
-							Eliminar producto
+						<button onClick={() => deleteProductById(item.id)} className='btn'>
+							Eliminar
 						</button>
 					</div>
 				</div>
 			))}
-			{cartList.length ? (
+
+			{Object.keys(cartData).length !== 0 ? (
 				<div className='cart-product__btn'>
 					<button onClick={removeCart} className='btn btn-product'>
 						Vaciar el carrito
 					</button>
-					<button className='btn terminar'>Terminar compra</button>
+					<button className='btn terminar' onClick={generarOrden}>
+						Terminar compra
+					</button>
+					<p className='total-price'>Total: ${price}</p>
 				</div>
 			) : (
 				<>

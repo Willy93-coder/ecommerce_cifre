@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
 
 const CartWidget = () => {
-	const { cart } = useCartContext();
-	console.log(cart);
+	const { cartQty } = useCartContext();
 
 	return (
 		<>
 			<Link to='/cart' className='cart-icon'>
 				<div className='qty-container'>
 					<FaShoppingCart />
-					<p className={cart === 0 ? 'no-display' : 'qty'}>{cart}</p>
+					<p className={cartQty === 0 ? 'no-display' : 'qty'}>{cartQty}</p>
 				</div>
 			</Link>
 		</>
