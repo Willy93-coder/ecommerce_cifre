@@ -5,7 +5,7 @@ import ItemCount from '../itemCount/ItemCount';
 import KeepBuying from '../cart/KeepBuying';
 
 const ItemDetail = ({ id, img, title, description, price, stock }) => {
-	const { addToCart, cartData } = useCartContext();
+	const { addToCart } = useCartContext();
 	const myProduct = {
 		id,
 		img,

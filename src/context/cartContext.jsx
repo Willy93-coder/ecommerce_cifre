@@ -37,7 +37,6 @@ const CartContextProvider = ({ children }) => {
 				const totalQtyProduct = cartData[cartDataKeys[i]].quantity;
 				const totalPriceProduct = priceProduct * totalQtyProduct;
 				const newTotalCartPrice = price - totalPriceProduct;
-				Number(newTotalCartPrice.toFixed(2));
 
 				setCartQty(cartQty - totalQtyProduct);
 				setPrice(newTotalCartPrice);

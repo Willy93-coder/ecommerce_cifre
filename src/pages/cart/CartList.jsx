@@ -1,16 +1,51 @@
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+import OrderPopUp from '../../components/orderPopUp/OrderPopUp';
+import { useState } from 'react';
 
 const CartList = () => {
 	const { cartData, price, deleteProductById, removeCart } = useCartContext();
+	const [orderId, setOrderId] = useState('');
+	const [openModal, setOpenModal] = useState(false);
 
 	const cartDataList = Object.keys(cartData).map((k) => cartData[k]);
 
-	const generarOrden = (e) => {
-		console.log('Funcionando');
-	};
+	const generarOrden = async (e) => {
+		try {
+			e.preventDefault();
+			let order = {};
 
-	console.log(cartData);
+			order.buyer = {
+				name: 'Guillermo',
+				email: 'guillermo@gmail.com',
+				phone: '027987569',
+			};
+
+			order.total = price;
+			order.items = cartDataList.map((item) => {
+				const id = item.id;
+				const name = item.title;
+				const price = item.price * item.quantity;
+
+				return { id, name, price };
+			});
+
+			// Creación documento en firebase
+			const db = getFirestore();
+			const queryCollection = collection(db, 'orders');
+			const queryOrder = await addDoc(queryCollection, order);
+			console.log(queryOrder);
+			const queryOrderId = queryOrder.id;
+			console.log(queryOrderId);
+			setOpenModal(true);
+			setOrderId(queryOrderId);
+		} catch (error) {
+			console.log(error);
+			alert('No se ha podido realizar el pedido');
+		}
+	};
+	// console.log(cartData);
 
 	return (
 		<div className='product-container'>
@@ -38,9 +73,14 @@ const CartList = () => {
 					<button onClick={removeCart} className='btn btn-product'>
 						Vaciar el carrito
 					</button>
-					<button className='btn terminar' onClick={generarOrden}>
+					<button onClick={generarOrden} className='btn terminar'>
 						Terminar compra
 					</button>
+					<OrderPopUp
+						open={openModal}
+						onClose={() => setOpenModal(false)}
+						orderId={orderId}
+					/>
 					<p className='total-price'>Total: ${price}</p>
 				</div>
 			) : (
