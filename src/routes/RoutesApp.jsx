@@ -13,10 +13,10 @@ const RoutesApp = () => {
 				<Routes>
 					<Route path='/' element={<ItemListContainer />} />
 					<Route
-						path='/categoria/:categoriaId'
+						path='/categoria/:categoryId'
 						element={<ItemListContainer />}
 					/>
-					<Route path='/detalle/:detalleId' element={<ItemDetailContainer />} />
+					<Route path='/detalle/:detailId' element={<ItemDetailContainer />} />
 					<Route path='/cart' element={<CartList />} />
 				</Routes>
 			</CartContextProvider>

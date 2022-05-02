@@ -10,29 +10,24 @@ import { useParams } from 'react-router-dom';
 import Item from '../item/Item';
 
 const ItemList = () => {
-	const [productos, setProductos] = useState([]);
-	const { categoriaId } = useParams();
-
-	// const API = 'https://fakestoreapi.com/products';
+	const [products, setProducts] = useState([]);
+	const { categoryId } = useParams();
 
 	useEffect(() => {
-		if (categoriaId) {
+		if (categoryId) {
 			const getProductosDB = async () => {
 				try {
 					const querydb = getFirestore();
 					const queryCollection = collection(querydb, 'productos');
 					const queryFilter = query(
 						queryCollection,
-						where('categoryId', '==', categoriaId)
+						where('categoryId', '==', categoryId)
 					);
 					const responsedb = await getDocs(queryFilter);
 					const items = responsedb;
-					setProductos(
+					setProducts(
 						items.docs.map((item) => ({ id: item.id, ...item.data() }))
 					);
-					// const respuesta = await fetch(API);
-					// const data = await respuesta.json();
-					// setProductos(data.filter((item) => item.category === categoriaId));
 				} catch (error) {
 					console.log(error);
 					alert('No podemos enseñar los productos ahora mismo');
@@ -46,12 +41,9 @@ const ItemList = () => {
 					const queryCollection = collection(querydb, 'productos');
 					const responsedb = await getDocs(queryCollection);
 					const items = responsedb;
-					setProductos(
+					setProducts(
 						items.docs.map((item) => ({ id: item.id, ...item.data() }))
 					);
-					// const respuesta = await fetch(API);
-					// const data = await respuesta.json();
-					// setProductos(data);
 				} catch (error) {
 					console.log(error);
 					alert('No podemos enseñar los productos ahora mismo');
@@ -59,20 +51,20 @@ const ItemList = () => {
 			};
 			getProductosDB();
 		}
-	}, [categoriaId]);
+	}, [categoryId]);
 
 	return (
 		<section className='container'>
-			{productos.length ? (
+			{products.length ? (
 				<>
-					{productos.map((producto) => {
+					{products.map((product) => {
 						return (
-							<div key={producto.id} className='card-container'>
+							<div key={product.id} className='card-container'>
 								<Item
-									id={producto.id}
-									img={producto.image}
-									title={producto.title}
-									stock={producto.stock}
+									id={product.id}
+									img={product.image}
+									title={product.title}
+									stock={product.stock}
 								/>
 							</div>
 						);

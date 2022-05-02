@@ -15,10 +15,10 @@ const ItemDetail = ({ id, img, title, description, price, stock }) => {
 		stock,
 	};
 
-	const [compra, setCompra] = useState('aniadir');
+	const [buy, setBuy] = useState('add');
 	const onAdd = (quantity) => {
 		addToCart(myProduct, quantity);
-		setCompra('buttons');
+		setBuy('buttons');
 	};
 
 	return (
@@ -30,8 +30,8 @@ const ItemDetail = ({ id, img, title, description, price, stock }) => {
 				<h3 className='detail__text__title'>{title}</h3>
 				<p className='detail__text__description'>{description}</p>
 				<p className='detail__text__price'>${price}</p>
-				{compra === 'aniadir' ? (
-					<ItemCount inicial={1} onAdd={onAdd} stock={stock} />
+				{buy === 'add' ? (
+					<ItemCount initial={1} onAdd={onAdd} stock={stock} />
 				) : (
 					<KeepBuying />
 				)}

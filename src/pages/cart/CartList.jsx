@@ -11,7 +11,7 @@ const CartList = () => {
 
 	const cartDataList = Object.keys(cartData).map((k) => cartData[k]);
 
-	const generarOrden = async (e) => {
+	const generateOrder = async (e) => {
 		try {
 			e.preventDefault();
 			let order = {};
@@ -45,7 +45,6 @@ const CartList = () => {
 			alert('No se ha podido realizar el pedido');
 		}
 	};
-	// console.log(cartData);
 
 	return (
 		<div className='product-container'>
@@ -73,7 +72,7 @@ const CartList = () => {
 					<button onClick={removeCart} className='btn btn-product'>
 						Vaciar el carrito
 					</button>
-					<button onClick={generarOrden} className='btn terminar'>
+					<button onClick={generateOrder} className='btn terminar'>
 						Terminar compra
 					</button>
 					<OrderPopUp

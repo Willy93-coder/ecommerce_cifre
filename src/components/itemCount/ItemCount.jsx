@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-const ItemCount = ({ inicial, stock, onAdd }) => {
-	const [valor, setValor] = useState(inicial);
+const ItemCount = ({ initial, stock, onAdd }) => {
+	const [value, setValue] = useState(initial);
 
-	const aniadirItem = (num) => {
-		setValor(valor + num);
+	const addItem = (num) => {
+		setValue(value + num);
 	};
 
 	return (
@@ -13,22 +13,22 @@ const ItemCount = ({ inicial, stock, onAdd }) => {
 				<div className='count-container__plus'>
 					<button
 						className='btn btn-plus'
-						onClick={() => aniadirItem(-1)}
-						disabled={valor === inicial ? true : null}
+						onClick={() => addItem(-1)}
+						disabled={value === initial ? true : null}
 					>
 						-
 					</button>
-					<span className='cantidad'>{valor}</span>
+					<span className='cantidad'>{value}</span>
 					<button
 						className='btn btn-plus'
-						onClick={() => aniadirItem(1)}
-						disabled={valor === stock ? true : null}
+						onClick={() => addItem(1)}
+						disabled={value === stock ? true : null}
 					>
 						+
 					</button>
 				</div>
 				<div className='count-container__add'>
-					<button className='btn btn-add' onClick={() => onAdd(valor)}>
+					<button className='btn btn-add' onClick={() => onAdd(value)}>
 						Añadir
 					</button>
 				</div>

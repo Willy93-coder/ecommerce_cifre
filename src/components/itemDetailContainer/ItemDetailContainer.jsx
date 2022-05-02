@@ -5,22 +5,16 @@ import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 const ItemDetailContainer = () => {
 	const [item, setItem] = useState({});
-	// const [stock, setStock] = useState({});
 	const [loading, setLoading] = useState(true);
-	const { detalleId } = useParams();
-
-	// const urlItem = `https://fakestoreapi.com/products/${detalleId}`;
+	const { detailId } = useParams();
 
 	const getProductosDB = async () => {
 		try {
 			const querydb = getFirestore();
-			const queryProd = doc(querydb, 'productos', detalleId);
+			const queryProd = doc(querydb, 'productos', detailId);
 			const product = await getDoc(queryProd);
 
-			// const respuesta = await fetch(urlItem);
-			// const data = await respuesta.json();
 			setItem({ id: product.id, ...product.data() });
-			// setStock(data.rating);
 			setLoading(false);
 		} catch (error) {
 			console.log(error);
