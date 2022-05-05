@@ -1,50 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cartContext';
-import { addDoc, collection, getFirestore } from 'firebase/firestore';
-import OrderPopUp from '../../components/orderPopUp/OrderPopUp';
 import { useState } from 'react';
+import Form from '../../components/form/Form';
 
 const CartList = () => {
 	const { cartData, price, deleteProductById, removeCart } = useCartContext();
-	const [orderId, setOrderId] = useState('');
-	const [openModal, setOpenModal] = useState(false);
+	const [activeForm, setActiveForm] = useState(false);
 
 	const cartDataList = Object.keys(cartData).map((k) => cartData[k]);
-
-	const generateOrder = async (e) => {
-		try {
-			e.preventDefault();
-			let order = {};
-
-			order.buyer = {
-				name: 'Guillermo',
-				email: 'guillermo@gmail.com',
-				phone: '027987569',
-			};
-
-			order.total = price;
-			order.items = cartDataList.map((item) => {
-				const id = item.id;
-				const name = item.title;
-				const price = item.price * item.quantity;
-
-				return { id, name, price };
-			});
-
-			// Creación documento en firebase
-			const db = getFirestore();
-			const queryCollection = collection(db, 'orders');
-			const queryOrder = await addDoc(queryCollection, order);
-			console.log(queryOrder);
-			const queryOrderId = queryOrder.id;
-			console.log(queryOrderId);
-			setOpenModal(true);
-			setOrderId(queryOrderId);
-		} catch (error) {
-			console.log(error);
-			alert('No se ha podido realizar el pedido');
-		}
-	};
 
 	return (
 		<div className='product-container'>
@@ -68,20 +31,21 @@ const CartList = () => {
 			))}
 
 			{Object.keys(cartData).length !== 0 ? (
-				<div className='cart-product__btn'>
-					<button onClick={removeCart} className='btn btn-product'>
-						Vaciar el carrito
-					</button>
-					<button onClick={generateOrder} className='btn terminar'>
-						Terminar compra
-					</button>
-					<OrderPopUp
-						open={openModal}
-						onClose={() => setOpenModal(false)}
-						orderId={orderId}
-					/>
-					<p className='total-price'>Total: ${price}</p>
-				</div>
+				<>
+					<div className='cart-product__btn'>
+						<button onClick={removeCart} className='btn btn-product'>
+							Vaciar el carrito
+						</button>
+						<button
+							onClick={() => setActiveForm(true)}
+							className='btn terminar'
+						>
+							Terminar compra
+						</button>
+						<p className='total-price'>Total: ${price}</p>
+					</div>
+					<Form active={activeForm} />
+				</>
 			) : (
 				<>
 					<h3>Todavía no has añadido ningún artículo a tu carrito</h3>

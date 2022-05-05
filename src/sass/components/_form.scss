@@ -1,0 +1,32 @@
+.container-form {
+    width: 75%;
+    padding: 1.875rem;
+
+    &__title {
+        font-size: 1.375rem;
+    }
+
+    &__order {
+        display: flex;
+        flex-direction: column;
+
+        .input {
+            border: 1px solid $black;
+            border-radius: .25rem;
+            padding: .625rem;
+        }
+
+        .order-btn {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+.margin-b {
+    margin-bottom: 1rem;
+}
+
+.incorrect {
+    color: $danger;
+}

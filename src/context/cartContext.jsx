@@ -50,6 +50,7 @@ const CartContextProvider = ({ children }) => {
 	const removeCart = () => {
 		setCartData({});
 		setCartQty(0);
+		setPrice(0);
 	};
 
 	return (
